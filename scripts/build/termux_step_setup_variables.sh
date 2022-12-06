@@ -126,6 +126,8 @@ termux_step_setup_variables() {
 	TERMUX_PKG_NO_SHEBANG_FIX=false # if true, skip fixing shebang accordingly to TERMUX_PREFIX
 	TERMUX_PKG_IS_HASKELL_LIB=true # by default assume haskell package is lib package as most of them will always be libs.
 	TERMUX_PKG_ON_DEVICE_BUILD_NOT_SUPPORTED=false # if the package does not support compilation on a device, then this package should not be compiled on devices
+	TERMUX_PYTHON_VERSION=$(. $TERMUX_SCRIPTDIR/packages/python/build.sh; echo $_MAJOR_VERSION)
+	TERMUX_PYTHON_DEPENDS=""
 
 	unset CFLAGS CPPFLAGS LDFLAGS CXXFLAGS
 }

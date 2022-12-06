@@ -104,9 +104,9 @@ source "$TERMUX_SCRIPTDIR/scripts/build/setup/termux_setup_golang.sh"
 # shellcheck source=scripts/build/setup/termux_setup_no_integrated_as.sh
 source "$TERMUX_SCRIPTDIR/scripts/build/setup/termux_setup_no_integrated_as.sh"
 
-# Utility function for python packages to setup a python crossenv.
-# shellcheck source=scripts/build/setup/termux_setup_python_crossenv.sh
-source "$TERMUX_SCRIPTDIR/scripts/build/setup/termux_setup_python_crossenv.sh"
+# Utility function for python packages to setup a python.
+# shellcheck source=scripts/build/setup/termux_setup_python_pip.sh
+source "$TERMUX_SCRIPTDIR/scripts/build/setup/termux_setup_python_pip.sh"
 
 # Utility function for rust-using packages to setup a rust toolchain.
 # shellcheck source=scripts/build/setup/termux_setup_rust.sh
