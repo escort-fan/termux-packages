@@ -15,6 +15,11 @@ termux_step_start_build() {
 		exit 0
 	fi
 
+	if [ -n "$TERMUX_PYTHON_DEPENDS" ]; then
+		# Enable python setting
+		TERMUX_PKG_SETUP_PYTHON=true
+	fi
+
 	TERMUX_PKG_FULLVERSION=$TERMUX_PKG_VERSION
 	if [ "$TERMUX_PKG_REVISION" != "0" ] || [ "$TERMUX_PKG_FULLVERSION" != "${TERMUX_PKG_FULLVERSION/-/}" ]; then
 		# "0" is the default revision, so only include it if the upstream versions contains "-" itself
@@ -97,22 +102,5 @@ termux_step_start_build() {
 			"$TERMUX_ELF_CLEANER" \
 			7c29143b9cffb3a9a580f39a7966b2bb36c5fc099da6f4c98dcdedacb14f08a2
 		chmod u+x "$TERMUX_ELF_CLEANER"
-	fi
-
-	if [ -n "$TERMUX_PYTHON_DEPENDS" ]; then
-		termux_setup_python_pip
-		if [ "$TERMUX_ON_DEVICE_BUILD" = "true" ]; then
-			pip3 install ${TERMUX_PYTHON_DEPENDS//,/}
-		else
-			pushd $TERMUX_PYTHON_CROSSENV_SRCDIR
-			_CROSSENV_PREFIX=$TERMUX_PKG_BUILDDIR/python-crossenv-prefix
-			python${TERMUX_PYTHON_VERSION} -m crossenv \
-				$TERMUX_PREFIX/bin/python${TERMUX_PYTHON_VERSION} \
-				${_CROSSENV_PREFIX}
-			popd
-			. ${_CROSSENV_PREFIX}/bin/activate
-			build-pip install ${TERMUX_PYTHON_DEPENDS//,/}
-		fi
-		export PYTHONPATH=$TERMUX_PREFIX/lib/python${TERMUX_PYTHON_VERSION}/site-packages
 	fi
 }

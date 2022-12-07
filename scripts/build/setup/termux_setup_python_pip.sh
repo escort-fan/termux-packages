@@ -12,6 +12,7 @@ termux_setup_python_pip() {
 			echo "Note that package 'python-pip' is known to be problematic for building on device."
 			exit 1
 		fi
+		return
 	else
 		local _CROSSENV_VERSION=1.3.0
 		local _CROSSENV_TAR=crossenv-$_CROSSENV_VERSION.tar.gz
@@ -42,5 +43,13 @@ termux_setup_python_pip() {
 			done
 			shopt -u nullglob
 		fi
+
+		pushd $TERMUX_PYTHON_CROSSENV_SRCDIR
+		_CROSSENV_PREFIX=$TERMUX_PKG_BUILDDIR/python-crossenv-prefix
+		python${TERMUX_PYTHON_VERSION} -m crossenv \
+                	$TERMUX_PREFIX/bin/python${TERMUX_PYTHON_VERSION} \
+			${_CROSSENV_PREFIX}
+		popd
+		. ${_CROSSENV_PREFIX}/bin/activate
 	fi
 }

@@ -164,6 +164,10 @@ source "$TERMUX_SCRIPTDIR/scripts/build/termux_get_repo_files.sh"
 # shellcheck source=scripts/build/termux_step_get_dependencies.sh
 source "$TERMUX_SCRIPTDIR/scripts/build/termux_step_get_dependencies.sh"
 
+# Download python dependency modules for compilation.
+# shellcheck source=scripts/build/termux_step_get_dependencies_python.sh
+source "$TERMUX_SCRIPTDIR/scripts/build/termux_step_get_dependencies_python.sh"
+
 # Handle config scripts that needs to be run during build. Not to be overridden by packages.
 # shellcheck source=scripts/build/termux_step_override_config_scripts.sh
 source "$TERMUX_SCRIPTDIR/scripts/build/termux_step_override_config_scripts.sh"
@@ -571,6 +575,7 @@ for ((i=0; i<${#PACKAGE_LIST[@]}; i++)); do
 		termux_step_setup_toolchain
 
 		if [ "$TERMUX_CONTINUE_BUILD" == "false" ]; then
+			termux_step_get_dependencies_python
 			termux_step_patch_package
 			termux_step_replace_guess_scripts
 			cd "$TERMUX_PKG_SRCDIR"

@@ -42,5 +42,7 @@ termux_step_make_install() {
 			--target $CARGO_TARGET_NAME \
 			--root $TERMUX_PREFIX \
 			$TERMUX_PKG_EXTRA_CONFIGURE_ARGS
+	elif ls ./setup.py &>/dev/null; then
+		pip install --no-deps . --prefix $TERMUX_PREFIX
 	fi
 }
