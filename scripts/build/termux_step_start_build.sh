@@ -15,7 +15,7 @@ termux_step_start_build() {
 		exit 0
 	fi
 
-	if [ -n "$TERMUX_PYTHON_DEPENDS" ]; then
+	if [ -n "$TERMUX_PYTHON_TARGET_DEPS" ] || [ -n "$TERMUX_PYTHON_BUILD_DEPS" ] || [ -n "$TERMUX_PYTHON_COMMOM_DEPS" ]; then
 		# Enable python setting
 		TERMUX_PKG_SETUP_PYTHON=true
 	fi
