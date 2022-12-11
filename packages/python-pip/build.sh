@@ -8,12 +8,9 @@ TERMUX_PKG_SHA256=8d9f7cd8ad0d6f0c70e71704fd3f0f6538d70930454f1f21bbc2f8e94f6964
 TERMUX_PKG_DEPENDS="python"
 TERMUX_PKG_PLATFORM_INDEPENDENT=true
 TERMUX_PKG_BUILD_IN_SRC=true
+TERMUX_PYTHON_COMMOM_DEPS="wheel, docutils, myst_parser, sphinx_copybutton, sphinx_inline_tabs, sphinxcontrib.towncrier, completion"
 
-TERMUX_PYTHON_DEPENDS="wheel, docutils, myst_parser, sphinx_copybutton, sphinx_inline_tabs, sphinxcontrib.towncrier, completion"
-
-termux_step_make_install() {
-	pip install --no-deps . --prefix $TERMUX_PREFIX
-
+termux_step_post_make_install() {
 	( # creating pip documentation
 		cd docs/
 		python pip_sphinxext.py
