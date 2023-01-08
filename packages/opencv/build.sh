@@ -42,8 +42,8 @@ termux_step_pre_configure() {
 
 	TERMUX_PKG_EXTRA_CONFIGURE_ARGS+="
 		-DPYTHON_DEFAULT_EXECUTABLE=python
-		-DPYTHON3_INCLUDE_PATH=$TERMUX_PREFIX/include/python${_PYTHON_VERSION}
-		-DPYTHON3_NUMPY_INCLUDE_DIRS=$TERMUX_PREFIX/lib/python${_PYTHON_VERSION}/site-packages/numpy/core/include
+		-DPYTHON3_INCLUDE_PATH=$TERMUX_PREFIX/include/python${TERMUX_PYTHON_VERSION}
+		-DPYTHON3_NUMPY_INCLUDE_DIRS=$TERMUX_PREFIX/lib/python${TERMUX_PYTHON_VERSION}/site-packages/numpy/core/include
 		"
 }
 

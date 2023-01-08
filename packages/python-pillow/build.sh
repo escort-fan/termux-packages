@@ -9,3 +9,4 @@ TERMUX_PKG_SRCURL=https://github.com/python-pillow/Pillow/archive/refs/tags/${TE
 TERMUX_PKG_DEPENDS="freetype, libimagequant, libjpeg-turbo, libraqm, libtiff, libwebp, libxcb, littlecms, openjpeg, python, zlib"
 TERMUX_PKG_LICENSE_FILE="LICENSE"
 TERMUX_PYTHON_COMMOM_DEPS="wheel"
+TERMUX_PKG_BUILD_IN_SRC=true

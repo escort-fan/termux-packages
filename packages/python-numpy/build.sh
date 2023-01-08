@@ -9,11 +9,9 @@ TERMUX_PKG_DEPENDS="libandroid-complex-math, libc++, libopenblas, python"
 TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_AUTO_UPDATE=true
 TERMUX_PKG_UPDATE_TAG_TYPE="latest-release-tag"
-TERMUX_PYTHON_COMMOM_DEPS="pybind11, Cython, pythran, wheel"
+TERMUX_PYTHON_COMMOM_DEPS="wheel, pybind11, Cython, pythran"
+TERMUX_PYTHON_LDFLAGS="-landroid-complex-math -lm"
+TERMUX_PYTHON_PIP_VARIAB="MATHLIB=m"
 TERMUX_PKG_RM_AFTER_INSTALL="
 bin/
 "
-
-termux_step_configure() {
-	LDFLAGS+=" -landroid-complex-math -lm"
-}

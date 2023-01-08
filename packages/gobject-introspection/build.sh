@@ -31,11 +31,11 @@ termux_step_pre_configure() {
 	fi
 
 	echo "Applying meson-python.diff"
-	sed "s%@PYTHON_VERSION@%$_PYTHON_VERSION%g" \
+	sed "s%@PYTHON_VERSION@%$TERMUX_PYTHON_VERSION%g" \
 		$TERMUX_PKG_BUILDER_DIR/meson-python.diff | patch --silent -p1
 
 	CPPFLAGS+="
-		-I$TERMUX_PREFIX/include/python${_PYTHON_VERSION}
-		-I$TERMUX_PREFIX/include/python${_PYTHON_VERSION}/cpython
+		-I$TERMUX_PREFIX/include/python${TERMUX_PYTHON_VERSION}
+		-I$TERMUX_PREFIX/include/python${TERMUX_PYTHON_VERSION}/cpython
 		"
 }

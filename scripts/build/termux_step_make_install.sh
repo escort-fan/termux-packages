@@ -3,6 +3,8 @@ termux_step_make_install() {
 
 	if test -f build.ninja; then
 		ninja -w dupbuild=warn -j $TERMUX_MAKE_PROCESSES install
+	elif test -f setup.py || test -f pyproject.toml || test -f setup.cfg; then
+		bash -c "$TERMUX_PYTHON_PIP_VARIAB pip install --no-deps . --prefix $TERMUX_PREFIX"
 	elif ls ./*.cabal &>/dev/null; then
 		termux-ghc-setup copy
 		if [ "${TERMUX_PKG_IS_HASKELL_LIB}" = true ]; then
@@ -42,7 +44,5 @@ termux_step_make_install() {
 			--target $CARGO_TARGET_NAME \
 			--root $TERMUX_PREFIX \
 			$TERMUX_PKG_EXTRA_CONFIGURE_ARGS
-	elif ls ./setup.py &>/dev/null; then
-		pip install --no-deps . --prefix $TERMUX_PREFIX
 	fi
 }
