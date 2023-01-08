@@ -1,19 +1,30 @@
 termux_step_get_dependencies_python() {
 	if [ "$TERMUX_PKG_SETUP_PYTHON" = "true" ]; then
+		[ ! "$TERMUX_QUIET_BUILD" = true ] && echo "Setting up python and pip"
+
 		# python pip setup
 		termux_setup_python_pip
 
 		# installing python modules
 		if [ "$TERMUX_SKIP_DEPCHECK" = "false" ]; then
+			local pip
+			local pip_pkgs="$TERMUX_PYTHON_COMMOM_DEPS, "
 			if [ "$TERMUX_ON_DEVICE_BUILD" = "true" ]; then
-				if [ -n "$TERMUX_PYTHON_TARGET_DEPS" ] || [ -n "$TERMUX_PYTHON_COMMOM_DEPS" ]; then
-					pip3 install ${TERMUX_PYTHON_TARGET_DEPS//,/} ${TERMUX_PYTHON_COMMOM_DEPS//,/}
-				fi
+				pip="pip3"
+				pip_pkgs+="$TERMUX_PYTHON_TARGET_DEPS"
 			else
-				if [ -n "$TERMUX_PYTHON_BUILD_DEPS" ] || [ -n "$TERMUX_PYTHON_COMMOM_DEPS" ]; then
-					build-pip install ${TERMUX_PYTHON_BUILD_DEPS//,/} ${TERMUX_PYTHON_COMMOM_DEPS//,/}
-				fi
+				pip="build-pip"
+				pip_pkgs+="$TERMUX_PYTHON_BUILD_DEPS"
 			fi
+			for i in ${pip_pkgs//,/} ; do
+				[ ! "$TERMUX_QUIET_BUILD" = true ] && echo "Installing the dependency python module $i..."
+				if ! termux_check_package_in_built_packages_list "python-$i"; then
+					$pip install $(test "${TERMUX_FORCE_BUILD_DEPENDENCIES}" = "true" && echo "-I" || true) "$i"
+					termux_add_package_to_built_packages_list "python-$i"
+				else
+					[ ! "$TERMUX_QUIET_BUILD" = true ] && echo "Skipping the already installed dependency python module $i."
+				fi
+			done
 		fi
 
 		# adding and setting values ​​to work properly with python modules

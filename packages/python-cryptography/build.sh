@@ -12,6 +12,7 @@ TERMUX_PKG_DEPENDS="openssl, python"
 TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_UPDATE_TAG_TYPE="newest-tag"
 TERMUX_PYTHON_COMMOM_DEPS="wheel, cffi, setuptools-rust"
+TERMUX_PYTHON_TARGET_DEPS="cffi, cffi>=1.12"
 
 termux_step_post_get_source() {
 	echo "Applying openssl-libs.diff"
@@ -29,6 +30,6 @@ termux_step_create_debscripts() {
 	cat <<- EOF > ./postinst
 	#!$TERMUX_PREFIX/bin/sh
 	echo "Installing dependencies through pip..."
-	pip3 install --no-binary cffi 'cffi>=1.12'
+	pip3 install --no-binary ${TERMUX_PYTHON_TARGET_DEPS//,/}
 	EOF
 }

@@ -131,6 +131,7 @@ termux_step_setup_variables() {
 	TERMUX_PYTHON_TARGET_DEPS="" # python modules to be installed via pip3
 	TERMUX_PYTHON_BUILD_DEPS="" # python modules to be installed via build-pip
 	TERMUX_PYTHON_COMMOM_DEPS="" # python modules to be installed via pip3 or build-pip
+	TERMUX_PYTHON_CROSSENV_PREFIX=$TERMUX_TOPDIR/python-crossenv-prefix
 
 	unset CFLAGS CPPFLAGS LDFLAGS CXXFLAGS
 }

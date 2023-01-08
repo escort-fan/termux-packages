@@ -44,12 +44,14 @@ termux_setup_python_pip() {
 			shopt -u nullglob
 		fi
 
-		pushd $TERMUX_PYTHON_CROSSENV_SRCDIR
-		_CROSSENV_PREFIX=$TERMUX_PKG_BUILDDIR/python-crossenv-prefix
-		python${TERMUX_PYTHON_VERSION} -m crossenv \
-                	$TERMUX_PREFIX/bin/python${TERMUX_PYTHON_VERSION} \
-			${_CROSSENV_PREFIX}
-		popd
-		. ${_CROSSENV_PREFIX}/bin/activate
+		if [ ! -d "$TERMUX_PYTHON_CROSSENV_PREFIX" ]; then
+			pushd "$TERMUX_PYTHON_CROSSENV_SRCDIR"
+			_CROSSENV_PREFIX=$TERMUX_TOPDIR/python-crossenv-prefix
+			python${TERMUX_PYTHON_VERSION} -m crossenv \
+                		"$TERMUX_PREFIX/bin/python${TERMUX_PYTHON_VERSION}" \
+				"${TERMUX_PYTHON_CROSSENV_PREFIX}"
+			popd
+		fi
+		. "${TERMUX_PYTHON_CROSSENV_PREFIX}/bin/activate"
 	fi
 }
