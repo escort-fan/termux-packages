@@ -9,6 +9,5 @@ TERMUX_PKG_SRCURL=https://sourceforge.net/projects/fetchmail/files/branch_${TERM
 TERMUX_PKG_SHA256=7b0b56cbc0fca854504f167795fab532d5a54d5a7d3b6e3e36a33f34a0960a01
 TERMUX_PKG_DEPENDS="openssl"
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="--with-ssl=$TERMUX_PREFIX"
-_PYTHON_VERSION=$(. $TERMUX_SCRIPTDIR/packages/python/build.sh; echo $_MAJOR_VERSION)
-TERMUX_PKG_RM_AFTER_INSTALL="lib/python${_PYTHON_VERSION}/site-packages/__pycache__"
+TERMUX_PKG_RM_AFTER_INSTALL="lib/python${TERMUX_PYTHON_VERSION}/site-packages/__pycache__"
 TERMUX_PYTHON_COMMOM_DEPS="wheel"
