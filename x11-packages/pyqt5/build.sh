@@ -8,8 +8,8 @@ TERMUX_PKG_SRCURL=https://ftp-osl.osuosl.org/pub/gentoo/distfiles/PyQt5-${TERMUX
 TERMUX_PKG_SHA256=755121a52b3a08cb07275c10ebb96576d36e320e572591db16cfdbc558101594
 TERMUX_PKG_DEPENDS="libc++, python, qt5-qtbase, qt5-qtdeclarative, qt5-qtlocation, qt5-qtmultimedia, qt5-qtsensors, qt5-qtsvg, qt5-qttools, qt5-qtwebchannel, qt5-qtwebkit, qt5-qtwebsockets, qt5-qtx11extras, qt5-qtxmlpatterns"
 TERMUX_PKG_BUILD_DEPENDS="qt5-qtbase-cross-tools, qt5-qtdeclarative-cross-tools, qt5-qttools-cross-tools"
-TERMUX_PYTHON_COMMOM_DEPS="wheel, PyQt-builder"
-TERMUX_PYTHON_TARGET_DEPS="PyQt5-sip"
+TERMUX_PKG_PYTHON_COMMON_DEPS="wheel, PyQt-builder"
+TERMUX_PKG_PYTHON_TARGET_DEPS="PyQt5-sip"
 TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_EXTRA_MAKE_ARGS="
 --verbose
@@ -72,6 +72,6 @@ termux_step_create_debscripts() {
 	cat <<- EOF > ./postinst
 	#!$TERMUX_PREFIX/bin/sh
 	echo "Installing dependencies through pip..."
-	pip3 install $TERMUX_PYTHON_TARGET_DEPS
+	pip3 install $TERMUX_PKG_PYTHON_TARGET_DEPS
 	EOF
 }

@@ -8,7 +8,7 @@ TERMUX_PKG_SRCURL=https://github.com/panda3d/panda3d/archive/refs/tags/v${TERMUX
 TERMUX_PKG_SHA256=b865882d8cbb44e7a9b1e030ecc071e689391644eb68b0d8ed78b970e8d4d2c7
 TERMUX_PKG_DEPENDS="libc++, python"
 TERMUX_PKG_BUILD_DEPENDS="libandroid-glob"
-TERMUX_PYTHON_COMMOM_DEPS="wheel"
+TERMUX_PKG_PYTHON_COMMON_DEPS="wheel"
 TERMUX_PKG_BUILD_IN_SRC=true
 
 termux_step_pre_configure() {

@@ -8,7 +8,7 @@ TERMUX_PKG_SRCURL=https://nlnetlabs.nl/downloads/unbound/unbound-${TERMUX_PKG_VE
 TERMUX_PKG_SHA256=dcbc95d7891d9f910c66e4edc9f1f2fde4dea2eec18e3af9f75aed44a02f1341
 TERMUX_PKG_DEPENDS="libevent, libexpat, libnghttp2, openssl, resolv-conf"
 TERMUX_PKG_BUILD_IN_SRC=true
-TERMUX_PYTHON_COMMOM_DEPS="wheel"
+TERMUX_PKG_PYTHON_COMMON_DEPS="wheel"
 
 # `pythonmodule` makes core lib/libunbound.so depend on python. Do not enable it.
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="

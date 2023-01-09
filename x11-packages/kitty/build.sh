@@ -11,7 +11,7 @@ TERMUX_PKG_SHA256=5544a580314fec7711187ce28162909b5ecff6780071444fe96fb97f8be5c9
 # fontconfig is dlopen(3)ed:
 TERMUX_PKG_DEPENDS="dbus, fontconfig, harfbuzz, libpng, librsync, libx11, libxkbcommon, littlecms, mesa (>= 22.0.3), ncurses, openssl, python, zlib"
 TERMUX_PKG_BUILD_DEPENDS="libxcursor, libxi, libxinerama, libxrandr, xorgproto"
-TERMUX_PYTHON_COMMOM_DEPS="wheel"
+TERMUX_PKG_PYTHON_COMMON_DEPS="wheel"
 TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_RM_AFTER_INSTALL="
 share/doc/kitty/html

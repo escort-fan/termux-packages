@@ -10,7 +10,7 @@ TERMUX_PKG_SRCURL=https://lilypond.org/download/sources/v${_MAJOR_VERSION}/lilyp
 TERMUX_PKG_SHA256=3cedbe3b92b02569e3a6f2f0674858967b3da278d70aa3e98aef5bdcd7f78b69
 TERMUX_PKG_DEPENDS="fontconfig, freetype, ghostscript, glib, guile, harfbuzz, libc++, pango, python, tex-gyre"
 TERMUX_PKG_BUILD_DEPENDS="flex"
-TERMUX_PYTHON_COMMOM_DEPS="wheel"
+TERMUX_PKG_PYTHON_COMMON_DEPS="wheel"
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --disable-documentation
 --with-texgyre-dir=$TERMUX_PREFIX/share/fonts/tex-gyre

@@ -8,5 +8,5 @@ TERMUX_PKG_SHA256=494cee55efe8733d9744ba2d96fec067a15e22f37e6aefa14b01cc630e7cfb
 TERMUX_PKG_SRCURL=https://github.com/python-pillow/Pillow/archive/refs/tags/${TERMUX_PKG_VERSION}.tar.gz
 TERMUX_PKG_DEPENDS="freetype, libimagequant, libjpeg-turbo, libraqm, libtiff, libwebp, libxcb, littlecms, openjpeg, python, zlib"
 TERMUX_PKG_LICENSE_FILE="LICENSE"
-TERMUX_PYTHON_COMMOM_DEPS="wheel"
+TERMUX_PKG_PYTHON_COMMON_DEPS="wheel"
 TERMUX_PKG_BUILD_IN_SRC=true

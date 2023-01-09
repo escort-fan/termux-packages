@@ -20,14 +20,14 @@ TERMUX_PKG_REVISION=1
 TERMUX_PKG_SRCURL=https://github.com/matplotlib/matplotlib/archive/refs/tags/v${TERMUX_PKG_VERSION}.tar.gz
 TERMUX_PKG_SHA256=5ac5ca25e6ecd1e7711e1f859b4b6f74f290ef517387d1502bf8012bf2b1647e
 TERMUX_PKG_DEPENDS="freetype, libc++, python, python-numpy, python-pillow"
-_PKG_PYTHON_DEPENDS="'contourpy>=1.0.1' 'cycler>=0.10' 'fonttools>=4.22.0' 'kiwisolver>=1.0.1' 'numpy>=1.19' 'packaging>=20.0' 'pyparsing>=2.2.1' 'python-dateutil>=2.7'"
+TERMUX_PKG_PYTHON_TARGET_DEPS="'contourpy>=1.0.1', 'cycler>=0.10', 'fonttools>=4.22.0', 'kiwisolver>=1.0.1', 'numpy>=1.19', 'packaging>=20.0', 'pyparsing>=2.2.1', 'python-dateutil>=2.7'"
 TERMUX_PKG_BUILD_IN_SRC=true
-TERMUX_PYTHON_COMMOM_DEPS="Cython, numpy, setuptools_scm, setuptools_scm_git_archive, wheel"
+TERMUX_PKG_PYTHON_COMMON_DEPS="Cython, numpy, setuptools_scm, setuptools_scm_git_archive, wheel"
 
 termux_step_create_debscripts() {
 	cat <<- EOF > ./postinst
 	#!$TERMUX_PREFIX/bin/sh
 	echo "Installing dependencies through pip. This may take a while..."
-	MATHLIB="m" pip3 install ${_PKG_PYTHON_DEPENDS}
+	MATHLIB="m" pip3 install ${TERMUX_PKG_PYTHON_TARGET_DEPS//, / }
 	EOF
 }

@@ -46,7 +46,6 @@ termux_setup_python_pip() {
 
 		if [ ! -d "$TERMUX_PYTHON_CROSSENV_PREFIX" ]; then
 			pushd "$TERMUX_PYTHON_CROSSENV_SRCDIR"
-			_CROSSENV_PREFIX=$TERMUX_TOPDIR/python-crossenv-prefix
 			python${TERMUX_PYTHON_VERSION} -m crossenv \
                 		"$TERMUX_PREFIX/bin/python${TERMUX_PYTHON_VERSION}" \
 				"${TERMUX_PYTHON_CROSSENV_PREFIX}"

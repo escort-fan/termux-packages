@@ -8,7 +8,7 @@ TERMUX_PKG_SRCURL=https://github.com/arvidn/libtorrent/releases/download/v${TERM
 TERMUX_PKG_SHA256=09dd399b4477638cf140183f5f85d376abffb9c192bc2910002988e27d69e13e
 TERMUX_PKG_DEPENDS="boost, libc++, openssl, python"
 TERMUX_PKG_BUILD_DEPENDS="boost-headers"
-TERMUX_PYTHON_COMMOM_DEPS="wheel"
+TERMUX_PKG_PYTHON_COMMON_DEPS="wheel"
 
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 -Dboost-python-module-name=python

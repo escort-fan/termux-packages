@@ -8,7 +8,7 @@ TERMUX_PKG_SRCURL=https://pypi.io/packages/source/b/bcrypt/bcrypt-${TERMUX_PKG_V
 TERMUX_PKG_SHA256=27d375903ac8261cfe4047f6709d16f7d18d39b1ec92aaf72af989552a650ebd
 TERMUX_PKG_DEPENDS="python"
 TERMUX_PKG_BUILD_DEPENDS="openssl"
-TERMUX_PYTHON_COMMOM_DEPS="wheel, setuptools-rust"
+TERMUX_PKG_PYTHON_COMMON_DEPS="wheel, setuptools-rust"
 TERMUX_PKG_BUILD_IN_SRC=true
 
 termux_step_pre_configure() {

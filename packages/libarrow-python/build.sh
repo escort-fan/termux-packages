@@ -9,7 +9,7 @@ TERMUX_PKG_SRCURL=https://github.com/apache/arrow/archive/refs/tags/apache-arrow
 TERMUX_PKG_SHA256=28c3e0402bc1c3c1e047b6e26cedb8d1d89b2b9497d576af24b0b700eef11701
 TERMUX_PKG_DEPENDS="libarrow-cpp, libc++, python"
 TERMUX_PKG_BUILD_DEPENDS="python-numpy"
-TERMUX_PYTHON_COMMOM_DEPS="Cython, wheel"
+TERMUX_PKG_PYTHON_COMMON_DEPS="Cython, wheel"
 
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 -DPYARROW_WITH_DATASET=ON
