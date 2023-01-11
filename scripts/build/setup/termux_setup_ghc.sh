@@ -2,7 +2,7 @@
 # Utility function to setup a GHC toolchain.
 termux_setup_ghc() {
 	if [ "$TERMUX_ON_DEVICE_BUILD" = "false" ]; then
-		local TERMUX_GHC_VERSION=8.10.7
+		local TERMUX_GHC_VERSION=9.4.4
 		local TERMUX_GHC_TEMP_FOLDER="${TERMUX_COMMON_CACHEDIR}/ghc-${TERMUX_GHC_VERSION}"
 		local TERMUX_GHC_TAR="${TERMUX_GHC_TEMP_FOLDER}.tar.xz"
 		local TERMUX_GHC_RUNTIME_FOLDER
@@ -19,10 +19,10 @@ termux_setup_ghc() {
 
 		termux_download "https://downloads.haskell.org/~ghc/${TERMUX_GHC_VERSION}/ghc-${TERMUX_GHC_VERSION}-x86_64-deb10-linux.tar.xz" \
 			"$TERMUX_GHC_TAR" \
-			a13719bca87a0d3ac0c7d4157a4e60887009a7f1a8dbe95c4759ec413e086d30
+			a3ecd2426bb519d6fdad05904c386f1c74b433f07722b0d1ef606c23159ade2d
 
-		rm -Rf "$TERMUX_GHC_TEMP_FOLDER"
-		tar xf "$TERMUX_GHC_TAR" -C "$TERMUX_COMMON_CACHEDIR"
+		mkdir -p "$TERMUX_GHC_TEMP_FOLDER"
+		tar xf "$TERMUX_GHC_TAR" -C "$TERMUX_GHC_TEMP_FOLDER" --strip-components=1
 
 		(
 			set -e
@@ -36,14 +36,14 @@ termux_setup_ghc() {
 		# After this patch we need to always pass --configure-option=--host=${TERMUX_HOST_PLATFORM}
 		# to Setup.hs configure.
 		(
-			CABAL_VERSION="3.6.2.0"
+			CABAL_VERSION="3.8.1.0"
 			CABAL_TEMP_FOLDER="$(mktemp -d -t cabal-"${CABAL_VERSION}".XXXXXX)"
 			CABAL_TAR="${CABAL_TEMP_FOLDER}/cabal-${CABAL_VERSION}.tar.gz"
 
 			termux_download \
 				https://hackage.haskell.org/package/Cabal-"${CABAL_VERSION}"/Cabal-"${CABAL_VERSION}".tar.gz \
 				"${CABAL_TAR}" \
-				9e903d06a7fb0893c6f303199e737a7d555fbb5e309be8bcc782b4eb2717bc42
+				7464cbe6c2f3d7e5d0232023a1a7330621f8b24853cb259fc89a2af85b736608
 
 			tar xf "${CABAL_TAR}" -C "${CABAL_TEMP_FOLDER}" --strip-components=1
 

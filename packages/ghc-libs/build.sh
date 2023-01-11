@@ -2,9 +2,9 @@ TERMUX_PKG_HOMEPAGE=https://www.haskell.org/ghc/
 TERMUX_PKG_DESCRIPTION="The Glasgow Haskell Compiler - Dynamic Libraries"
 TERMUX_PKG_LICENSE="BSD 2-Clause, BSD 3-Clause, LGPL-2.1"
 TERMUX_PKG_MAINTAINER="Aditya Alok <alok@termux.org>"
-TERMUX_PKG_VERSION=9.2.5
+TERMUX_PKG_VERSION=9.4.4
 TERMUX_PKG_SRCURL="https://downloads.haskell.org/~ghc/${TERMUX_PKG_VERSION}/ghc-${TERMUX_PKG_VERSION}-src.tar.xz"
-TERMUX_PKG_SHA256=0606797d1b38e2d88ee2243f38ec6b9a1aa93e9b578e95f0de9a9c0a4144021c
+TERMUX_PKG_SHA256=e8cef25a6ded1531cda7a90488d0cfb6d780657d16636daa59430be030cd67e2
 TERMUX_PKG_DEPENDS="iconv, libffi, ncurses, libgmp, libandroid-posix-semaphore"
 TERMUX_PKG_BUILD_IN_SRC=true
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
@@ -21,9 +21,6 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --with-curses-libraries=${TERMUX_PREFIX}/lib
 --with-curses-includes=${TERMUX_PREFIX}/include
 "
-# ghc-pkg is in this package. Here ghci is lib not bin.
-TERMUX_PKG_PROVIDES="haskekl-ghc-pkg, haskell-ghci"
-TERMUX_PKG_CONFLICTS="haskell-ghci"
 TERMUX_PKG_STATICSPLIT_EXTRA_PATTERNS="lib/**/*.hi lib/**/*.o"
 
 termux_step_pre_configure() {
@@ -122,8 +119,6 @@ termux_step_pre_configure() {
 
 		 \$1_\$2_CONFIGURE_OPTS += --configure-option=--host=\$(TargetPlatformFull)
 	EOF
-
-	./boot
 }
 
 termux_step_make_install() {
