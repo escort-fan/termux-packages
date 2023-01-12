@@ -2,7 +2,7 @@
 # Utility function to setup a GHC toolchain.
 termux_setup_ghc() {
 	if [ "$TERMUX_ON_DEVICE_BUILD" = "false" ]; then
-		local TERMUX_GHC_VERSION=9.4.4
+		local TERMUX_GHC_VERSION=9.0.2
 		local TERMUX_GHC_TEMP_FOLDER="${TERMUX_COMMON_CACHEDIR}/ghc-${TERMUX_GHC_VERSION}"
 		local TERMUX_GHC_TAR="${TERMUX_GHC_TEMP_FOLDER}.tar.xz"
 		local TERMUX_GHC_RUNTIME_FOLDER
@@ -19,7 +19,7 @@ termux_setup_ghc() {
 
 		termux_download "https://downloads.haskell.org/~ghc/${TERMUX_GHC_VERSION}/ghc-${TERMUX_GHC_VERSION}-x86_64-deb10-linux.tar.xz" \
 			"$TERMUX_GHC_TAR" \
-			a3ecd2426bb519d6fdad05904c386f1c74b433f07722b0d1ef606c23159ade2d
+			5d0b9414b10cfb918453bcd01c5ea7a1824fe95948b08498d6780f20ba247afc
 
 		mkdir -p "$TERMUX_GHC_TEMP_FOLDER"
 		tar xf "$TERMUX_GHC_TAR" -C "$TERMUX_GHC_TEMP_FOLDER" --strip-components=1

@@ -119,6 +119,7 @@ termux_step_pre_configure() {
 
 		 \$1_\$2_CONFIGURE_OPTS += --configure-option=--host=\$(TargetPlatformFull)
 	EOF
+	export CC="$(command -v "$CC")", CXX="$(command -v "$CXX")"
 }
 
 termux_step_make_install() {
