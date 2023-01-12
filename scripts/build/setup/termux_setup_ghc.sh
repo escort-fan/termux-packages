@@ -36,27 +36,27 @@ termux_setup_ghc() {
 		# Cabal passes a host string to the libraries' configure scripts that isn't valid.
 		# After this patch we need to always pass --configure-option=--host=${TERMUX_HOST_PLATFORM}
 		# to Setup.hs configure.
-		(
-			CABAL_VERSION="3.8.1.0"
-			CABAL_TEMP_FOLDER="$(mktemp -d -t cabal-"${CABAL_VERSION}".XXXXXX)"
-			CABAL_TAR="${CABAL_TEMP_FOLDER}/cabal-${CABAL_VERSION}.tar.gz"
-
-			termux_download \
-				https://hackage.haskell.org/package/Cabal-"${CABAL_VERSION}"/Cabal-"${CABAL_VERSION}".tar.gz \
-				"${CABAL_TAR}" \
-				7464cbe6c2f3d7e5d0232023a1a7330621f8b24853cb259fc89a2af85b736608
-
-			tar xf "${CABAL_TAR}" -C "${CABAL_TEMP_FOLDER}" --strip-components=1
-
-			cd "${CABAL_TEMP_FOLDER}"
-
-			sed -i 's/maybeHostFlag = i/maybeHostFlag = [] -- i/' src/Distribution/Simple.hs
-
-			runhaskell Setup configure --prefix="${TERMUX_GHC_RUNTIME_FOLDER}"
-			runhaskell Setup build
-			runhaskell Setup install
-			ghc-pkg recache
-		)
+		# (
+		# 	CABAL_VERSION="3.8.1.0"
+		# 	CABAL_TEMP_FOLDER="$(mktemp -d -t cabal-"${CABAL_VERSION}".XXXXXX)"
+		# 	CABAL_TAR="${CABAL_TEMP_FOLDER}/cabal-${CABAL_VERSION}.tar.gz"
+		#
+		# 	termux_download \
+		# 		https://hackage.haskell.org/package/Cabal-"${CABAL_VERSION}"/Cabal-"${CABAL_VERSION}".tar.gz \
+		# 		"${CABAL_TAR}" \
+		# 		7464cbe6c2f3d7e5d0232023a1a7330621f8b24853cb259fc89a2af85b736608
+		#
+		# 	tar xf "${CABAL_TAR}" -C "${CABAL_TEMP_FOLDER}" --strip-components=1
+		#
+		# 	cd "${CABAL_TEMP_FOLDER}"
+		#
+		# 	sed -i 's/maybeHostFlag = i/maybeHostFlag = [] -- i/' src/Distribution/Simple.hs
+		#
+		# 	runhaskell Setup configure --prefix="${TERMUX_GHC_RUNTIME_FOLDER}"
+		# 	runhaskell Setup build
+		# 	runhaskell Setup install
+		# 	ghc-pkg recache
+		# )
 		rm -Rf "$TERMUX_GHC_TEMP_FOLDER" "$TERMUX_GHC_TAR"
 	else
 		if [[ "$TERMUX_APP_PACKAGE_MANAGER" = "apt" && "$(dpkg-query -W -f '${db:Status-Status}\n' ghc 2>/dev/null)" != "installed" ]] ||
